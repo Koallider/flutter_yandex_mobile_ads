@@ -1,0 +1,3 @@
+package flutter_yandex_mobile_ads.android
+
+rootProject.name = 'flutter_yandex_mobile_ads'
