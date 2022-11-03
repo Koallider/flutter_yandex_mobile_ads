@@ -1,3 +1,7 @@
+## 0.0.3
+
+- Updated Gradle version
+
 ## 0.0.2
 
 - Added Dartdoc.
