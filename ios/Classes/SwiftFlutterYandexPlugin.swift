@@ -35,15 +35,13 @@ public class SwiftFlutterYandexPlugin: NSObject, FlutterPlugin {
         }
 
         func interstitialAd(_ interstitialAd: YMAInterstitialAd, didTrackImpressionWith impressionData: YMAImpressionData?) {
-            channel.invokeMethod("onInterstitialAdOpened", arguments: nil)
+            channel.invokeMethod("onInterstitialAdImpressionCounted", arguments: nil)
         }
 
         func interstitialAdWillLeaveApplication(_ interstitialAd: YMAInterstitialAd) {
-            print("Will leave application")
         }
 
         func interstitialAdDidFail(toPresent interstitialAd: YMAInterstitialAd, error: Error) {
-            channel.invokeMethod("onInterstitialAdShowFailed", arguments: nil)
         }
 
         func interstitialAdWillAppear(_ interstitialAd: YMAInterstitialAd) {
@@ -51,7 +49,7 @@ public class SwiftFlutterYandexPlugin: NSObject, FlutterPlugin {
         }
 
         func interstitialAdDidAppear(_ interstitialAd: YMAInterstitialAd) {
-            channel.invokeMethod("onInterstitialAdShowSucceeded", arguments: nil)
+            channel.invokeMethod("onInterstitialAdOpened", arguments: nil)
         }
 
         func interstitialAdWillDisappear(_ interstitialAd: YMAInterstitialAd) {
@@ -100,14 +98,13 @@ public class SwiftFlutterYandexPlugin: NSObject, FlutterPlugin {
         }
 
         func rewardedAd(_ rewardedAd: YMARewardedAd, didTrackImpressionWith impressionData: YMAImpressionData?) {
-            channel.invokeMethod("onRewardedVideoAdStarted", arguments: nil)
+            channel.invokeMethod("onRewardedVideoImpressionCounted", arguments: nil)
         }
         
         func rewardedAdWillLeaveApplication(_ rewardedAd: YMARewardedAd) {
         }
         
         func rewardedAdDidFail(toPresent rewardedAd: YMARewardedAd, error: Error) {
-            channel.invokeMethod("onRewardedVideoAdShowFailed", arguments: nil)
         }
         
         func rewardedAdWillAppear(_ rewardedAd: YMARewardedAd) {

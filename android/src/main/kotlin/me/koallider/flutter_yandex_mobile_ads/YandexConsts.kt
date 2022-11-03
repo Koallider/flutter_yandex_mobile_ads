@@ -11,7 +11,7 @@ object YandexConsts {
     // Rewarded keys
     const val ON_REWARDED_VIDEO_AD_OPENED = "onRewardedVideoAdOpened"
     const val ON_REWARDED_VIDEO_AD_CLOSED = "onRewardedVideoAdClosed"
-    const val ON_REWARDED_VIDEO_AD_STARTED = "onRewardedVideoAdStarted"
+    const val ON_REWARDED_VIDEO_IMPRESSION_COUNTED = "onRewardedVideoImpressionCounted"
     const val ON_REWARDED_VIDEO_AD_REWARDED = "onRewardedVideoAdRewarded"
     const val ON_REWARDED_VIDEO_AD_CLICKED = "onRewardedVideoAdClicked"
     const val ON_REWARDED_AD_READY = "onRewardedAdReady"
@@ -23,6 +23,6 @@ object YandexConsts {
     const val ON_INTERSTITIAL_AD_CLOSED = "onInterstitialAdClosed"
     const val ON_INTERSTITIAL_AD_LOAD_FAILED = "onInterstitialAdLoadFailed"
     const val ON_INTERSTITIAL_AD_SHOW_FAILED = "onInterstitialAdShowFailed"
-    const val ON_INTERSTITIAL_AD_SHOW_SUCCEEDED = "onInterstitialAdShowSucceeded"
+    const val ON_INTERSTITIAL_AD_IMPRESSION_COUNTED = "onInterstitialAdImpressionCounted"
     const val ON_INTERSTITIAL_AD_CLICKED = "onInterstitialAdClicked"
 }
