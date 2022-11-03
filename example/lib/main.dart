@@ -96,7 +96,7 @@ class _MyAppState extends State<MyApp> {
         });
       } else if (event == YandexAdEvent.adLoadFailed) {
         setState(() {
-          status = "Interstitial Failed To Load";
+          status = "Interstitial Failed To Load with code: ${args['errorCode']}";
         });
       }
     }
@@ -127,7 +127,7 @@ class _MyAppState extends State<MyApp> {
         });
       } else if (event == YandexAdEvent.adLoadFailed) {
         setState(() {
-          status = "Failed To Load Rewarded Video";
+          status = "Failed To Load Rewarded Video with code: ${args['errorCode']}";
         });
       } else if (event == YandexAdEvent.adRewarded) {
         setState(() {
