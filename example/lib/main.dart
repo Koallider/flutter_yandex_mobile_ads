@@ -56,26 +56,6 @@ class _MyAppState extends State<MyApp> {
               Expanded(
                   child: Container(
                       alignment: Alignment.center, child: Text(status)))
-              /*CustomButton(
-                label: "Load interstitial",
-                onPressed: loadInterstitial,
-              ),
-              CustomButton(
-                label: "Show interstitial",
-                onPressed: interstitialReady ? showInterstitial : null,
-              ),
-              CustomButton(
-                label: "Show offerwall",
-                onPressed: offerwallAvailable ? showOfferwall : null,
-              ),
-              CustomButton(
-                label: "Show Rewarded Video",
-                onPressed: rewardeVideoAvailable ? showRewardedVideo : null,
-              ),
-              CustomButton(
-                label: showBanner ? "hide banner" : "Show Banner",
-                onPressed: showHideBanner,
-              ),*/
             ],
           ),
         ),
