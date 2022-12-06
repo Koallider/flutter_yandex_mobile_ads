@@ -1,3 +1,7 @@
+## 0.0.5
+
+- Updated SDK version
+
 ## 0.0.4
 
 - Fixed iOS build.
