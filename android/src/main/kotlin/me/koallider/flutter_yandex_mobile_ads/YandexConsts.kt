@@ -2,11 +2,14 @@ package me.koallider.flutter_yandex_mobile_ads
 
 object YandexConsts {
     const val MAIN_CHANNEL = "me.koallider.flutter_yandex_mobile_ads"
+    const val BANNER_CHANNEL = "$MAIN_CHANNEL/banner"
     const val INIT = "initialize"
     const val LOAD_INTERSTITIAL = "loadInterstitial"
     const val SHOW_INTERSTITIAL = "showInterstitial"
     const val LOAD_REWARDED = "loadRewardedVideo"
     const val SHOW_REWARDED_VIDEO = "showRewardedVideo"
+    const val LOAD_BANNER = "loadBanner"
+    const val REPORT_SIZE = "reportSize"
 
     // Rewarded keys
     const val ON_REWARDED_VIDEO_AD_OPENED = "onRewardedVideoAdOpened"
@@ -25,4 +28,10 @@ object YandexConsts {
     const val ON_INTERSTITIAL_AD_SHOW_FAILED = "onInterstitialAdShowFailed"
     const val ON_INTERSTITIAL_AD_IMPRESSION_COUNTED = "onInterstitialAdImpressionCounted"
     const val ON_INTERSTITIAL_AD_CLICKED = "onInterstitialAdClicked"
+
+    //Banner Keys
+    const val ON_BANNER_AD_LOADED = "onBannerAdLoaded";
+    const val ON_BANNER_AD_LOAD_FAILED = "onBannerAdLoadFailed";
+    const val ON_BANNER_AD_CLICKED = "onBannerAdClicked"
+    const val ON_BANNER_AD_IMPRESSION_COUNTED = "onBannerAdImpressionCounted"
 }

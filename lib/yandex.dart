@@ -32,7 +32,7 @@ typedef YandexAdListener(YandexAdEvent event, dynamic arguments);
 
 class Yandex {
   static const MethodChannel _channel =
-      MethodChannel("me.koallider.flutter_yandex_mobile_ads");
+      MethodChannel(MAIN_CHANNEL);
   static YandexAdListener? _rewardedListener;
   static YandexAdListener? _interstititalListener;
 

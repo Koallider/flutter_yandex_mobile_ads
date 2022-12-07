@@ -226,10 +226,12 @@ class FlutterYandexPlugin() : FlutterPlugin, MethodCallHandler, ActivityAware {
     }
 
     override fun onAttachedToEngine(binding: FlutterPlugin.FlutterPluginBinding) {
-        this.flutterPluginBinding = binding
-        this.mChannel = MethodChannel(binding.binaryMessenger, YandexConsts.MAIN_CHANNEL)
+        flutterPluginBinding = binding
+        messenger = binding.binaryMessenger
+        this.mChannel = MethodChannel(messenger, YandexConsts.MAIN_CHANNEL)
         this.mChannel.setMethodCallHandler(this)
-        Log.i("DEBUG", "Tesst On Attached")
+        this.flutterPluginBinding.platformViewRegistry
+            .registerViewFactory(YandexConsts.BANNER_CHANNEL, YandexBannerViewFactory(messenger))
     }
 
     override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
@@ -237,8 +239,7 @@ class FlutterYandexPlugin() : FlutterPlugin, MethodCallHandler, ActivityAware {
     }
 
     override fun onAttachedToActivity(binding: ActivityPluginBinding) {
-        this.mActivity = binding.activity;
-        Log.i("DEBUG", "Tesst On Activity")
+        this.mActivity = binding.activity
     }
 
     override fun onDetachedFromActivityForConfigChanges() {
