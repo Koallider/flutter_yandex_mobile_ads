@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_yandex_mobile_ads/banner.dart';
 import 'package:flutter_yandex_mobile_ads/yandex.dart';
 
 void main() => runApp(MyApp());
@@ -28,38 +29,66 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: const Text('Flutter Yandex Mobile Ads'),
-        ),
-        body: Container(
-          padding: EdgeInsets.symmetric(vertical: 50.0),
-          alignment: Alignment.center,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              TextButton(
-                  onPressed: loadInterstitial,
-                  child: Text("Load Interstitial")),
-              TextButton(
-                  onPressed: showInterstitial,
-                  child: Text("Show Interstitial")),
-
-              TextButton(
-                  onPressed: loadRewardedVideo,
-                  child: Text("Load Rewarded Video")),
-              TextButton(
-                  onPressed: showRewardedVideo,
-                  child: Text("Show Rewarded Video")),
-
-              Expanded(
-                  child: Container(
-                      alignment: Alignment.center, child: Text(status)))
-            ],
+      builder: (context, child) {
+        var width = MediaQuery.of(context).size.width;
+        return Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            title: const Text('Flutter Yandex Mobile Ads'),
           ),
-        ),
-      ),
+          body: Container(
+            //padding: EdgeInsets.symmetric(vertical: 50.0),
+            alignment: Alignment.center,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                TextButton(
+                    onPressed: loadInterstitial,
+                    child: Text("Load Interstitial")),
+                TextButton(
+                    onPressed: showInterstitial,
+                    child: Text("Show Interstitial")),
+
+                TextButton(
+                    onPressed: loadRewardedVideo,
+                    child: Text("Load Rewarded Video")),
+                TextButton(
+                    onPressed: showRewardedVideo,
+                    child: Text("Show Rewarded Video")),
+
+                Expanded(
+                    child: Container(
+                        alignment: Alignment.center, child: Text(status))),
+                Container(height: 2, color: Colors.green,),
+                YandexBanner(
+                  adUnitId: "R-M-DEMO-300x250",
+                  size: YandexBannerSize.stickySize(width.toInt()),
+                  listener: (event, arguments) {
+                    switch(event){
+                      case YandexAdEvent.adReady:
+                        setState(() {
+                          status = "Banner Loaded";
+                        });
+                        break;
+                      case YandexAdEvent.adLoadFailed:
+                        setState(() {
+                          status = "Banner Load Failed";
+                        });
+                        break;
+                      case YandexAdEvent.adClicked:
+                        setState(() {
+                          status = "Banner Clicked";
+                        });
+                        break;
+                    }
+                  },
+                ),
+                Container(height: 2, color: Colors.green,)
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 
