@@ -16,8 +16,7 @@ Yandex Ads & Mediation Plugin for Flutter
   s.source_files = 'Classes/**/*'
   s.public_header_files = 'Classes/**/*.h'
   s.dependency 'Flutter'
-  s.dependency 'YandexMobileAds', '5.3.1'
-  s.dependency 'YandexMobileAdsInstream', '0.13.0'
+  s.dependency 'YandexMobileAds', '5.2.1'
 
   s.static_framework = true
 
