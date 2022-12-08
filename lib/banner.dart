@@ -27,8 +27,10 @@ class YandexBannerSize {
 /// More info: https://yandex.com/dev/mobile-ads/doc/android/quick-start/banner.html
 class YandexBanner extends StatefulWidget {
   final YandexBannerSize size;
+
   /// Ad Unit id in R-M-XXXXXX-Y format from the Partner Interface
   final String adUnitId;
+
   /// Ad Events Listener.
   ///
   /// Possible Banner Events:
@@ -57,25 +59,33 @@ class _YandexBannerState extends State<YandexBanner> {
 
   @override
   Widget build(BuildContext context) {
+    Widget platformView;
+    var creationParams = <String, dynamic>{
+      "adUnitId": widget.adUnitId,
+      "height": widget.size.height,
+      "width": widget.size.width,
+    };
     if (Platform.isAndroid) {
-      return Container(
+      platformView = AndroidView(
+        viewType: BANNER_CHANNEL,
+        onPlatformViewCreated: _onBannerCreated,
+        creationParams: creationParams,
+        creationParamsCodec: const StandardMessageCodec(),
+      );
+    } else {
+      platformView = UiKitView(
+        viewType: BANNER_CHANNEL,
+        layoutDirection: TextDirection.ltr,
+        creationParams: creationParams,
+        onPlatformViewCreated: _onBannerCreated,
+        creationParamsCodec: const StandardMessageCodec(),
+      );
+    }
+    return Container(
         width: _platformBannerSize.width.toDouble(),
         height: _platformBannerSize.height?.toDouble() ?? 0,
         color: Colors.transparent,
-        child: AndroidView(
-          viewType: BANNER_CHANNEL,
-          onPlatformViewCreated: _onBannerCreated,
-          creationParams: <String, dynamic>{
-            "adUnitId": widget.adUnitId,
-            "height": widget.size.height,
-            "width": widget.size.width,
-          },
-          creationParamsCodec: const StandardMessageCodec(),
-        ),
-      );
-    } else {
-      throw UnsupportedError("Only Android platform is supported for now");
-    }
+        child: platformView);
   }
 
   void _onBannerCreated(int id) {
