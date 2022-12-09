@@ -9,7 +9,7 @@ To instrument your flutter based mobile application with Yandex Mobile Ads Plugi
 ```yaml
 dependencies:
   ...
-  flutter_yandex_mobile_ads: 0.0.5
+  flutter_yandex_mobile_ads: 0.0.6
 ```
 
 # Usage:
@@ -59,3 +59,13 @@ Yandex.rewardedListener = listener;
 Yandex.loadRewarded("R-M-DEMO-rewarded-client-side-rtb");
 ```
 Replace "R-M-DEMO-rewarded-client-side-rtb" with your placement key.
+
+## Banner Ad
+
+```dart
+YandexBanner(
+  adUnitId: "R-M-DEMO-300x250",
+  size: YandexBannerSize.stickySize(width),
+)
+```
+
