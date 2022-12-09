@@ -1,6 +1,16 @@
 # Flutter plugin for Yandex Mobile Ads SDK
 
-This plugin supports Interstitial and Rewarded Video ads for Android and iOS.
+## This plugin supports:
+
+### Android:
+- [x] Interstitial Ad
+- [x] Rewarded Video
+- [x] Banner
+
+### iOS:
+- [x] Interstitial Ad
+- [x] Rewarded Video
+- [x] Banner
 
 ## Installation
 
