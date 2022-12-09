@@ -117,10 +117,10 @@ class _YandexBannerState extends State<YandexBanner> {
     }
   }
 
-  void updateSize(){
-    channel.invokeMethod(REPORT_SIZE).then((value){
+  void updateSize() {
+    channel.invokeMethod(REPORT_SIZE).then((value) {
       setState(() {
-        int width =  max(2, value["platformWidth"]);
+        int width = max(2, value["platformWidth"]);
         int height = max(2, value["platformHeight"]);
         _platformBannerSize = YandexBannerSize.flexibleSize(width, height);
       });
