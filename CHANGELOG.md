@@ -1,3 +1,8 @@
+## 0.0.6
+
+- Added banner support
+- Reverted iOS SDK version to 5.2.1
+
 ## 0.0.5
 
 - Updated SDK version

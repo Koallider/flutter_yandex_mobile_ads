@@ -31,8 +31,7 @@ enum YandexAdEvent {
 typedef YandexAdListener(YandexAdEvent event, dynamic arguments);
 
 class Yandex {
-  static const MethodChannel _channel =
-      MethodChannel(MAIN_CHANNEL);
+  static const MethodChannel _channel = MethodChannel(MAIN_CHANNEL);
   static YandexAdListener? _rewardedListener;
   static YandexAdListener? _interstititalListener;
 
