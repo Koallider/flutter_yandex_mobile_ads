@@ -75,7 +75,13 @@ Replace "R-M-DEMO-rewarded-client-side-rtb" with your placement key.
 ```dart
 YandexBanner(
   adUnitId: "R-M-DEMO-300x250",
-  size: YandexBannerSize.stickySize(width),
+  size: YandexBannerSize.stickySize(MediaQuery.of(context).size.width.toInt()),
 )
 ```
-
+or
+```dart
+YandexBanner(
+  adUnitId: "R-M-DEMO-300x250",
+  size: YandexBannerSize.flexibleSize(320, 320),
+)
+```
