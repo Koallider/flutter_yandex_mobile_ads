@@ -1,3 +1,7 @@
+## 0.0.7
+
+- Fixed the exception when banner is dismissed before ad was loaded 
+
 ## 0.0.6
 
 - Added banner support
