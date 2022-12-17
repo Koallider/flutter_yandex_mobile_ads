@@ -58,7 +58,7 @@ class _YandexBannerState extends State<YandexBanner> {
   }
 
   @override
-  void dispose(){
+  void dispose() {
     channel.setMethodCallHandler(null);
     super.dispose();
   }

@@ -1,6 +1,6 @@
 name: flutter_yandex_mobile_ads
 description: Flutter plugin for Yandex Mobile Ads to display interstitial and Rewarded ads.
-version: 0.0.6
+version: 0.0.7
 homepage: https://github.com/romanrrr/flutter_yandex_mobile_ads
 
 environment:
