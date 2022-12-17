@@ -58,6 +58,12 @@ class _YandexBannerState extends State<YandexBanner> {
   }
 
   @override
+  void dispose(){
+    channel.setMethodCallHandler(null);
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     Widget platformView;
     var creationParams = <String, dynamic>{
