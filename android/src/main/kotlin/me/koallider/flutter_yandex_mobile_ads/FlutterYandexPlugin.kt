@@ -81,7 +81,7 @@ class FlutterYandexPlugin() : FlutterPlugin, MethodCallHandler, ActivityAware {
                 mActivity.runOnUiThread {
                     val arguments = HashMap<String, Any>()
                     arguments["errorCode"] = error.code
-                    arguments["errorMessage"] = "FAILED TO LOAD"
+                    arguments["errorMessage"] = error.description
                     mChannel.invokeMethod(YandexConsts.ON_INTERSTITIAL_AD_LOAD_FAILED, arguments)
                 }
                 Log.d(TAG, "onAdFailedToLoad")
@@ -158,7 +158,7 @@ class FlutterYandexPlugin() : FlutterPlugin, MethodCallHandler, ActivityAware {
                 mActivity.runOnUiThread {
                     val arguments = HashMap<String, Any>()
                     arguments["errorCode"] = error.code
-                    arguments["errorMessage"] = "FAILED TO LOAD"
+                    arguments["errorMessage"] = error.description
                     mChannel.invokeMethod(YandexConsts.ON_REWARDED_AD_LOAD_FAILED, arguments)
                 }
                 Log.d(TAG, "onAdFailedToLoad")

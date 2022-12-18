@@ -60,9 +60,11 @@ class YandexBannerView(
                 }
             }
 
-            override fun onAdFailedToLoad(p0: AdRequestError) {
+            override fun onAdFailedToLoad(error: AdRequestError) {
                 Handler(Looper.getMainLooper()).post {
                     val arguments = HashMap<String, Any>()
+                    arguments["errorCode"] = error.code
+                    arguments["errorMessage"] = error.description
                     channel.invokeMethod(YandexConsts.ON_BANNER_AD_LOAD_FAILED, arguments)
                 }
             }
