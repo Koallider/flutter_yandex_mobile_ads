@@ -55,7 +55,7 @@ class _YandexMobileAdsDemoState extends State<YandexMobileAdsDemo> {
         });
       } else if (event == YandexAdEvent.adLoadFailed) {
         setState(() {
-          status = "Interstitial Failed To Load with code: ${args['errorCode']}";
+          status = "Interstitial Failed To Load: ${args['errorMessage']}";
         });
       }
     }
@@ -86,7 +86,7 @@ class _YandexMobileAdsDemoState extends State<YandexMobileAdsDemo> {
         });
       } else if (event == YandexAdEvent.adLoadFailed) {
         setState(() {
-          status = "Failed To Load Rewarded Video with code: ${args['errorCode']}";
+          status = "Failed To Load Rewarded Video: ${args['errorMessage']}";
         });
       } else if (event == YandexAdEvent.adRewarded) {
         setState(() {
@@ -164,7 +164,7 @@ class _YandexMobileAdsDemoState extends State<YandexMobileAdsDemo> {
                     break;
                   case YandexAdEvent.adLoadFailed:
                     setState(() {
-                      status = "Banner Load Failed";
+                      status = "Banner Load Failed: ${arguments['errorMessage']}";
                     });
                     break;
                   case YandexAdEvent.adClicked:
