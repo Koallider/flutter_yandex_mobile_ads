@@ -1,3 +1,7 @@
+## 0.0.8
+
+- Fixed error message for adLoadFailed event on Android.
+
 ## 0.0.7
 
 - Fixed the exception when banner is dismissed before ad was loaded 
