@@ -1,3 +1,7 @@
+## 0.0.9
+
+- Upgraded android SDK version to 5.5.0
+
 ## 0.0.8
 
 - Fixed error message for adLoadFailed event on Android.
