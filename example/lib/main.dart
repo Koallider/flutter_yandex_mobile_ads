@@ -146,7 +146,7 @@ class _YandexMobileAdsDemoState extends State<YandexMobileAdsDemo> {
                 child: Text("Show Rewarded Video")),
             TextButton(
                 onPressed: openFlexBannerPage,
-                child: Text("Open FLex Banner Page")),
+                child: Text("Open Flex Banner Page")),
 
             Expanded(
                 child: Container(
