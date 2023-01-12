@@ -22,6 +22,9 @@ dependencies:
   flutter_yandex_mobile_ads: ^0.0.9
 ```
 
+### Important note for iOS:
+Version 0.0.9 of this plugin uses pod YandexMobileAds version 5.4.0 which requires **Swift 5.7** to build correctly.
+
 # Usage:
 
 ## Init
