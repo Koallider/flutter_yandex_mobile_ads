@@ -20,7 +20,7 @@ Yandex Ads & Mediation Plugin for Flutter
 
   s.static_framework = true
 
-  s.platform = :ios, '9.0'
+  s.platform = :ios, '12.0'
     s.user_target_xcconfig = { 'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => 'YES' }
 
   # Flutter.framework does not contain a i386 slice.
