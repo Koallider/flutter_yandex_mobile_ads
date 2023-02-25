@@ -1,3 +1,8 @@
+## 0.0.10
+
+- Upgraded Android SDK version to 5.6.0
+- Upgraded iOS SDK version to 5.5.0
+
 ## 0.0.9
 
 - Upgraded Android SDK version to 5.5.0
