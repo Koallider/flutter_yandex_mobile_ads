@@ -4,7 +4,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'flutter_yandex_mobile_ads'
-  s.version          = '0.0.10'
+  s.version          = '0.0.11'
   s.summary          = 'Yandex Mobile Ads SDK for Flutter'
   s.description      = <<-DESC
 Yandex Ads & Mediation Plugin for Flutter
