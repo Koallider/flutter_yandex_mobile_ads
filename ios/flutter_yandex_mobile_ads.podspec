@@ -4,7 +4,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'flutter_yandex_mobile_ads'
-  s.version          = '0.0.10'
+  s.version          = '0.0.11'
   s.summary          = 'Yandex Mobile Ads SDK for Flutter'
   s.description      = <<-DESC
 Yandex Ads & Mediation Plugin for Flutter
@@ -17,7 +17,6 @@ Yandex Ads & Mediation Plugin for Flutter
   s.public_header_files = 'Classes/**/*.h'
   s.dependency 'Flutter'
   s.dependency 'YandexMobileAds', '5.5.0'
-  s.dependency 'YandexMobileAdsInstream', '0.13.0'
 
   s.static_framework = true
 
