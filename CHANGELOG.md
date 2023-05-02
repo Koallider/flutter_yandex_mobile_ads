@@ -1,3 +1,8 @@
+## 0.0.12
+
+- Upgraded Android SDK version to 5.7.0
+- Upgraded iOS SDK version to 5.6.0
+
 ## 0.0.11
 
 - Removed YandexMobileAdsInstream dependency

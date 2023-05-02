@@ -19,7 +19,7 @@ To instrument your flutter based mobile application with Yandex Mobile Ads Plugi
 ```yaml
 dependencies:
   ...
-  flutter_yandex_mobile_ads: ^0.0.11
+  flutter_yandex_mobile_ads: ^0.0.12
 ```
 
 ### Important note for iOS:
