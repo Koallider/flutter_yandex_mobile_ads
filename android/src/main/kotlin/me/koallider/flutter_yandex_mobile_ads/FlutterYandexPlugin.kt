@@ -19,9 +19,9 @@ import me.koallider.flutter_yandex_mobile_ads.YandexConsts
 import com.yandex.mobile.ads.common.*
 import com.yandex.mobile.ads.interstitial.InterstitialAd
 import com.yandex.mobile.ads.interstitial.InterstitialAdEventListener
-import com.yandex.mobile.ads.rewarded.Reward
-import com.yandex.mobile.ads.rewarded.RewardedAd
-import com.yandex.mobile.ads.rewarded.RewardedAdEventListener
+import com.yandex.mobile.ads.interstitial.InterstitialAdLoadListener
+import com.yandex.mobile.ads.interstitial.InterstitialAdLoader
+import com.yandex.mobile.ads.rewarded.*
 
 
 /** FlutterYandexPlugin */
@@ -64,35 +64,50 @@ class FlutterYandexPlugin() : FlutterPlugin, MethodCallHandler, ActivityAware {
     }
 
     fun loadInterstitial(placementId: String) {
-        mInterstitialAd = InterstitialAd(mActivity)
-        mInterstitialAd!!.setAdUnitId(placementId)
 
-        val adRequest = AdRequest.Builder().build()
-        mInterstitialAd!!.setInterstitialAdEventListener(object : InterstitialAdEventListener {
-            override fun onAdLoaded() {
-                mActivity.runOnUiThread {
-                    val arguments = HashMap<String, Any>()
-                    mChannel.invokeMethod(YandexConsts.ON_INTERSTITIAL_AD_READY, arguments)
+        val loader = InterstitialAdLoader(mActivity).apply {
+            setAdLoadListener(object : InterstitialAdLoadListener {
+                override fun onAdLoaded(interstitialAd: InterstitialAd) {
+                    mInterstitialAd?.setAdEventListener(null)
+                    mInterstitialAd = interstitialAd;
+                    mActivity.runOnUiThread {
+                        val arguments = HashMap<String, Any>()
+                        mChannel.invokeMethod(YandexConsts.ON_INTERSTITIAL_AD_READY, arguments)
+                    }
+                    Log.d(TAG, "onAdLoaded")
                 }
-                Log.d(TAG, "onAdLoaded")
-            }
 
-            override fun onAdFailedToLoad(error: AdRequestError) {
-                mActivity.runOnUiThread {
-                    val arguments = HashMap<String, Any>()
-                    arguments["errorCode"] = error.code
-                    arguments["errorMessage"] = error.description
-                    mChannel.invokeMethod(YandexConsts.ON_INTERSTITIAL_AD_LOAD_FAILED, arguments)
+                override fun onAdFailedToLoad(adRequestError: AdRequestError) {
+                    mActivity.runOnUiThread {
+                        val arguments = HashMap<String, Any>()
+                        arguments["errorCode"] = adRequestError.code
+                        arguments["errorMessage"] = adRequestError.description
+                        mChannel.invokeMethod(YandexConsts.ON_INTERSTITIAL_AD_LOAD_FAILED, arguments)
+                    }
+                    Log.d(TAG, "onAdFailedToLoad")
                 }
-                Log.d(TAG, "onAdFailedToLoad")
-            }
+            })
+        }
+        loader.loadAd(AdRequestConfiguration.Builder(placementId).build())
+    }
 
+    fun showInterstitial() {
+        mInterstitialAd?.setAdEventListener(object : InterstitialAdEventListener{
             override fun onAdShown() {
                 mActivity.runOnUiThread {
                     val arguments = HashMap<String, Any>()
                     mChannel.invokeMethod(YandexConsts.ON_INTERSTITIAL_AD_OPENED, arguments)
                 }
                 Log.d(TAG, "onAdShown")
+            }
+
+            override fun onAdFailedToShow(adError: AdError) {
+                mActivity.runOnUiThread {
+                    val arguments = HashMap<String, Any>()
+                    arguments["errorMessage"] = adError.description
+                    mChannel.invokeMethod(YandexConsts.ON_INTERSTITIAL_AD_SHOW_FAILED, arguments)
+                }
+                Log.d(TAG, "onAdFailedToShow")
             }
 
             override fun onAdDismissed() {
@@ -111,15 +126,7 @@ class FlutterYandexPlugin() : FlutterPlugin, MethodCallHandler, ActivityAware {
                 Log.d(TAG, "onAdClicked")
             }
 
-            override fun onLeftApplication() {
-                Log.d(TAG, "onLeftApplication")
-            }
-
-            override fun onReturnedToApplication() {
-                Log.d(TAG, "onReturnedToApplication")
-            }
-
-            override fun onImpression(p0: ImpressionData?) {
+            override fun onAdImpression(p0: ImpressionData?) {
                 mActivity.runOnUiThread {
                     val arguments = HashMap<String, Any>()
                     mChannel.invokeMethod(
@@ -129,40 +136,42 @@ class FlutterYandexPlugin() : FlutterPlugin, MethodCallHandler, ActivityAware {
                 }
                 Log.d(TAG, "onImpression")
             }
-
-        })
-        mInterstitialAd!!.loadAd(adRequest)
-    }
-
-    fun showInterstitial() {
-        if (mInterstitialAd?.isLoaded == true) {
-            mInterstitialAd?.show()
-        }
+        });
+        mInterstitialAd?.show(mActivity);
     }
 
     fun loadRewarded(placementId: String) {
-        mRewardedAd = RewardedAd(mActivity)
-        mRewardedAd!!.setAdUnitId(placementId)
 
-        val adRequest = AdRequest.Builder().build()
-        mRewardedAd!!.setRewardedAdEventListener(object : RewardedAdEventListener {
-            override fun onAdLoaded() {
-                mActivity.runOnUiThread {
-                    val arguments = HashMap<String, Any>()
-                    mChannel.invokeMethod(YandexConsts.ON_REWARDED_AD_READY, arguments)
-                }
-                Log.d(TAG, "onAdLoaded")
-            }
 
-            override fun onAdFailedToLoad(error: AdRequestError) {
-                mActivity.runOnUiThread {
-                    val arguments = HashMap<String, Any>()
-                    arguments["errorCode"] = error.code
-                    arguments["errorMessage"] = error.description
-                    mChannel.invokeMethod(YandexConsts.ON_REWARDED_AD_LOAD_FAILED, arguments)
+        val loader = RewardedAdLoader(mActivity).apply {
+            setAdLoadListener(object : RewardedAdLoadListener {
+                override fun onAdLoaded(rewardedAd: RewardedAd) {
+                    mRewardedAd?.setAdEventListener(null);
+                    mRewardedAd = rewardedAd
+
+                    mActivity.runOnUiThread {
+                        val arguments = HashMap<String, Any>()
+                        mChannel.invokeMethod(YandexConsts.ON_REWARDED_AD_READY, arguments)
+                    }
+                    Log.d(TAG, "onAdLoaded")
                 }
-                Log.d(TAG, "onAdFailedToLoad")
-            }
+
+                override fun onAdFailedToLoad(adRequestError: AdRequestError) {
+                    mActivity.runOnUiThread {
+                        val arguments = HashMap<String, Any>()
+                        arguments["errorCode"] = adRequestError.code
+                        arguments["errorMessage"] = adRequestError.description
+                        mChannel.invokeMethod(YandexConsts.ON_REWARDED_AD_LOAD_FAILED, arguments)
+                    }
+                    Log.d(TAG, "onAdFailedToLoad")
+                }
+            })
+        }
+        loader.loadAd(AdRequestConfiguration.Builder(placementId).build())
+    }
+
+    fun showRewarded() {
+        mRewardedAd?.setAdEventListener(object : RewardedAdEventListener {
 
             override fun onAdShown() {
                 mActivity.runOnUiThread {
@@ -170,6 +179,15 @@ class FlutterYandexPlugin() : FlutterPlugin, MethodCallHandler, ActivityAware {
                     mChannel.invokeMethod(YandexConsts.ON_REWARDED_VIDEO_AD_OPENED, arguments)
                 }
                 Log.d(TAG, "onAdShown")
+            }
+
+            override fun onAdFailedToShow(adError: AdError) {
+                mActivity.runOnUiThread {
+                    val arguments = HashMap<String, Any>()
+                    arguments["errorMessage"] = adError.description
+                    mChannel.invokeMethod(YandexConsts.ON_REWARDED_AD_LOAD_FAILED, arguments)
+                }
+                Log.d(TAG, "onAdFailedToShow")
             }
 
             override fun onAdDismissed() {
@@ -195,16 +213,7 @@ class FlutterYandexPlugin() : FlutterPlugin, MethodCallHandler, ActivityAware {
                 Log.d(TAG, "onAdClicked")
             }
 
-            override fun onLeftApplication() {
-                Log.d(TAG, "onLeftApplication")
-
-            }
-
-            override fun onReturnedToApplication() {
-                Log.d(TAG, "onReturnedToApplication")
-            }
-
-            override fun onImpression(p0: ImpressionData?) {
+            override fun onAdImpression(p0: ImpressionData?) {
                 mActivity.runOnUiThread {
                     val arguments = HashMap<String, Any>()
                     mChannel.invokeMethod(
@@ -214,15 +223,8 @@ class FlutterYandexPlugin() : FlutterPlugin, MethodCallHandler, ActivityAware {
                 }
                 Log.d(TAG, "onImpression")
             }
-
         })
-        mRewardedAd!!.loadAd(adRequest)
-    }
-
-    fun showRewarded() {
-        if (mRewardedAd?.isLoaded == true) {
-            mRewardedAd?.show()
-        }
+        mRewardedAd?.show(mActivity)
     }
 
     override fun onAttachedToEngine(binding: FlutterPlugin.FlutterPluginBinding) {

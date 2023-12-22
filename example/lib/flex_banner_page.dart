@@ -12,7 +12,7 @@ class FlexBannerPage extends StatelessWidget{
             Text("Flex Banner Page", textAlign: TextAlign.center,),
             Expanded(child: Center(
               child: YandexBanner(
-                adUnitId: "R-M-DEMO-300x250",
+                adUnitId: "demo-banner-yandex",
                 size: YandexBannerSize.flexibleSize(320, 320),
               ),
             ))

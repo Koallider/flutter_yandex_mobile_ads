@@ -28,7 +28,10 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 31
+    if (project.android.hasProperty("namespace")) {
+        namespace 'me.koallider.flutter_yandex_mobile_ads'
+    }
+    compileSdkVersion 33
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
@@ -41,8 +44,14 @@ android {
     }
 }
 
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
 dependencies {
-    implementation 'com.yandex.android:mobileads:5.7.0'
-    implementation 'com.yandex.android:mobmetricalib:5.3.0'
+    implementation 'com.yandex.android:mobileads:6.3.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }

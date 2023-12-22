@@ -61,7 +61,7 @@ class _YandexMobileAdsDemoState extends State<YandexMobileAdsDemo> {
     }
 
     Yandex.interstititalListener = listener;
-    Yandex.loadInterstitial("R-M-DEMO-interstitial");
+    Yandex.loadInterstitial("demo-interstitial-yandex");
   }
 
   void showInterstitial() {
@@ -95,7 +95,7 @@ class _YandexMobileAdsDemoState extends State<YandexMobileAdsDemo> {
       }
     };
     Yandex.rewardedListener = listener;
-    Yandex.loadRewarded("R-M-DEMO-rewarded-client-side-rtb");
+    Yandex.loadRewarded("demo-rewarded-yandex");
   }
 
   void showRewardedVideo() {
@@ -153,7 +153,7 @@ class _YandexMobileAdsDemoState extends State<YandexMobileAdsDemo> {
                     alignment: Alignment.center, child: Text(status))),
             Container(height: 2, color: Colors.green,),
             YandexBanner(
-              adUnitId: "R-M-DEMO-300x250",
+              adUnitId: "demo-banner-yandex",
               size: YandexBannerSize.stickySize(width.toInt()),
               listener: (event, arguments) {
                 switch(event){

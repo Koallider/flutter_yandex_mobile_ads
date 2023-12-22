@@ -25,7 +25,11 @@ enum YandexAdEvent {
 
   ///Failed to load Ad.
   ///Use arguments['errorCode'] to get the error code from SDK]
-  adLoadFailed
+  adLoadFailed,
+
+  ///Failed to show Ad.
+  ///Use arguments['errorCode'] to get the error code from SDK]
+  adShowFailed
 }
 
 typedef YandexAdListener(YandexAdEvent event, dynamic arguments);
@@ -112,6 +116,7 @@ class Yandex {
     ON_REWARDED_VIDEO_IMPRESSION_COUNTED: YandexAdEvent.adImpressionCounted,
     ON_REWARDED_AD_READY: YandexAdEvent.adReady,
     ON_REWARDED_AD_LOAD_FAILED: YandexAdEvent.adLoadFailed,
+    ON_REWARDED_AD_SHOW_FAILED: YandexAdEvent.adShowFailed,
   };
 
   /// A map of the Interstitial Ad events that can be received from the native SDK.
@@ -122,6 +127,7 @@ class Yandex {
     ON_INTERSTITIAL_AD_READY: YandexAdEvent.adReady,
     ON_INTERSTITIAL_AD_IMPRESSION_COUNTED: YandexAdEvent.adImpressionCounted,
     ON_INTERSTITIAL_AD_LOAD_FAILED: YandexAdEvent.adLoadFailed,
+    ON_INTERSTITIAL_AD_SHOW_FAILED: YandexAdEvent.adShowFailed,
   };
 
   static Future<dynamic> _handle(MethodCall call) async {

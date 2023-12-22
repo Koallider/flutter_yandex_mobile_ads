@@ -6,8 +6,8 @@ import android.os.Looper
 import android.util.Log
 import android.view.View
 import androidx.annotation.NonNull
-import com.yandex.mobile.ads.banner.AdSize
 import com.yandex.mobile.ads.banner.BannerAdEventListener
+import com.yandex.mobile.ads.banner.BannerAdSize
 import com.yandex.mobile.ads.banner.BannerAdView
 import io.flutter.plugin.common.BinaryMessenger
 import io.flutter.plugin.common.MethodChannel
@@ -47,9 +47,9 @@ class YandexBannerView(
         val width = creationParams["width"]!! as Int
         val height = creationParams["height"] as Int?
         if(height == null){
-            bannerView.setAdSize(AdSize.stickySize(width))
+            bannerView.setAdSize(BannerAdSize.stickySize(context, width))
         }else {
-            bannerView.setAdSize(AdSize.flexibleSize(width, height))
+            bannerView.setAdSize(BannerAdSize.inlineSize(context, width, height))
         }
 
         bannerView.setBannerAdEventListener(object : BannerAdEventListener {

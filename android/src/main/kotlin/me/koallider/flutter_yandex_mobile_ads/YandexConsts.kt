@@ -19,6 +19,7 @@ object YandexConsts {
     const val ON_REWARDED_VIDEO_AD_CLICKED = "onRewardedVideoAdClicked"
     const val ON_REWARDED_AD_READY = "onRewardedAdReady"
     const val ON_REWARDED_AD_LOAD_FAILED = "onRewardedAdLoadFailed"
+    const val ON_REWARDED_AD_SHOW_FAILED = "onRewardedAdShowFailed"
 
     //  Interstitial keys
     const val ON_INTERSTITIAL_AD_OPENED = "onInterstitialAdOpened"
